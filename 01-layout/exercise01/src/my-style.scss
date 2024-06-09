@@ -1,0 +1,46 @@
+
+$first-color: red;
+$second-color: blue;
+$thrid-color: green;
+
+body div {
+    display: flex;
+    color: gray;
+    gap: 6px;
+}
+
+.base-color {
+    color: white;
+}
+
+.box {
+    padding: 30px 6px;
+    border-radius: 6px;
+}
+
+@mixin color-palette($class, $color) {
+
+    .#{$class} {
+        margin-bottom: 6px;
+    }
+
+    .#{$class} .base-color {
+        background-color: $color;
+    }
+
+    @for $i from 1 to 5 {
+        .#{$class} .box.darken-#{$i} {
+            background-color: darken($color, $i * 10%);
+        }
+    }
+    
+    @for $i from 1 to 5 {
+        .#{$class} .box.lighten-#{$i} {
+            background-color: lighten($color, $i * 10%);
+        }
+    }
+}
+
+@include color-palette("container-1", $first-color);
+@include color-palette("container-2", $second-color);
+@include color-palette("container-3", $thrid-color);
