@@ -22,7 +22,18 @@ Utiliza Typescript para añadir los tipos adecuados.
 
 */
 
-function isBookRead(books, titleToSearch) {
+class Book {
+
+  title: string;
+  isRead: boolean;
+
+  constructor(title: string, isRead: boolean) {
+    this.title = title;
+    this.isRead = isRead;
+  }
+}
+
+function isBookRead(books: Book[], titleToSearch: string) {
 
     for (let index = 0; index < books.length; index++) {
         let book = books[index];
