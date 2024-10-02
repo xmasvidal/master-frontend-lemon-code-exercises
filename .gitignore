@@ -1,4 +1,6 @@
 01-layout/.DS_Store
 .DS_Store
-.DS_Store
-01-layout/.DS_Store
+03-bundling/node_modules
+03-bundling/dist
+04-frameworks/01-react/node_modules
+04-frameworks/01-react/dist
