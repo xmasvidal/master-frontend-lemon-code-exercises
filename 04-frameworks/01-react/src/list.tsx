@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, ButtonGroup, TextField, TableContainer, Table, TableHead, 
+  TableRow, TableCell, TableBody, Paper, Avatar } from '@mui/material';
+
 
 interface MemberEntity {
   id: string;
@@ -122,33 +125,47 @@ export const ListPage: React.FC = () => {
 
   return (
     <>
-      <h2>Hello from List page</h2>+{" "}
+      <h2>Hello from List page</h2>
       <div>
         <h3>Organization: {organization}</h3>
-        <input
-            value={organization}
-            onChange={(e) => setOrganization(e.target.value)}
-        ></input>
-        <button onClick={searchOrganization}>Search</button>
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small" 
+        value={organization} onChange={(e) => setOrganization(e.target.value)}/>
+        <Button variant="contained" onClick={searchOrganization}>Search</Button>
       </div>
-      <div className="paginator">
-        <button onClick={searchFirstPage} disabled={hasFirstPage()}>first</button>
-        <button onClick={searchPreviousPage} disabled={hasPreviousPage()}>previous</button>
-        <button onClick={searchNextPage} disabled={hasNextPage()}>next</button>
-        <button onClick={searchLastPage} disabled={hasLastPage()}>last</button>
-      </div>
-      <div className="list-user-list-container">
-        <span className="list-header">Avatar</span>
-        <span className="list-header">Id</span>
-        <span className="list-header">Name</span>
-        {members.length > 0 && members.map((member) => (
-          <>
-            <img src={member.avatar_url} />
-            <span>{member.id}</span>
-            <Link to={`/detail/${member.login}`}>{member.login}</Link>
-          </>
-        ))}
-      </div>
+      <br/>
+      <ButtonGroup variant="contained" aria-label="Basic button group">
+        <Button onClick={searchFirstPage} disabled={hasFirstPage()}>first</Button>
+        <Button onClick={searchPreviousPage} disabled={hasPreviousPage()}>previous</Button>
+        <Button onClick={searchNextPage} disabled={hasNextPage()}>next</Button>
+        <Button onClick={searchLastPage} disabled={hasLastPage()}>last</Button>
+      </ButtonGroup>
+
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow >
+            <TableCell>Avatar</TableCell>
+            <TableCell align="right">Id</TableCell>
+            <TableCell align="right">Name</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {members.map((member) => (
+            <TableRow
+              key={member.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                <Avatar alt={member.login} src={member.avatar_url} sx={{ width: 80, height: 80 }} />
+              </TableCell>
+              <TableCell align="right">{member.id}</TableCell>
+              <TableCell align="right"><Link to={`/detail/${member.login}`}>{member.login}</Link></TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
       <Link to="/detail">Navigate to detail page</Link>
     </>
   );
