@@ -141,7 +141,7 @@ export const ListPage: React.FC = () => {
       </ButtonGroup>
 
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow >
             <TableCell>Avatar</TableCell>
@@ -153,10 +153,9 @@ export const ListPage: React.FC = () => {
           {members.map((member) => (
             <TableRow
               key={member.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                <Avatar alt={member.login} src={member.avatar_url} sx={{ width: 80, height: 80 }} />
+                <Avatar alt={member.login} src={member.avatar_url} />
               </TableCell>
               <TableCell align="right">{member.id}</TableCell>
               <TableCell align="right"><Link to={`/detail/${member.login}`}>{member.login}</Link></TableCell>
