@@ -127,8 +127,7 @@ export const ListPage: React.FC = () => {
     <>
       <h2>Hello from List page</h2>
       <div>
-        <h3>Organization: {organization}</h3>
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small" 
+        <TextField id="outlined-basic" label="GitHub Organization Name" variant="outlined" size="small" 
         value={organization} onChange={(e) => setOrganization(e.target.value)}/>
         <Button variant="contained" onClick={searchOrganization}>Search</Button>
       </div>
