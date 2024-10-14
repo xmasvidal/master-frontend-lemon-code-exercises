@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-    Button, TextField, TableContainer, Table, TableHead,
+    TextField, TableContainer, Table, TableHead,
     TableRow, TableCell, TableBody, Paper, Avatar
 } from '@mui/material';
 import { getCharacters } from 'rickmortyapi';
+import { useDebounce } from 'use-debounce';
 
 interface Character {
     id: number;
@@ -20,7 +21,8 @@ export const RickAndMortyPage: React.FC = () => {
 
     const [characters, setCharacters] = React.useState<Character[]>([]);
     const [nameToSearch, setNameToSearch] = React.useState<string>("rick");
-
+    const [debounceFilter, setDebounceFilter] = useDebounce(nameToSearch, 1000);
+ 
     const searchCharacters = () => {
         getCharacters({
             name: nameToSearch
@@ -33,7 +35,7 @@ export const RickAndMortyPage: React.FC = () => {
 
     React.useEffect(() => {
         searchCharacters();
-      }, []);
+      }, [debounceFilter]);
 
     return (
         <>
@@ -42,7 +44,6 @@ export const RickAndMortyPage: React.FC = () => {
             <div>
                 <TextField id="outlined-basic" label="Character Name" variant="outlined" size="small"
                     value={nameToSearch} onChange={(e) => setNameToSearch(e.target.value)} />
-                <Button variant="contained" disabled={nameToSearch.length < 1} onClick={searchCharacters}>Search</Button>
             </div>
 
             <TableContainer component={Paper}>
