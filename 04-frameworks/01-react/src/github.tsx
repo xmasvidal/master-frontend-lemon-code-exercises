@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, ButtonGroup, TextField, TableContainer, Table, TableHead, 
   TableRow, TableCell, TableBody, Paper, Avatar } from '@mui/material';
+import { ApiSelector } from './api-selector'; 
+import { SelectedItemContext } from "./app";
 
 
 interface MemberEntity {
@@ -33,6 +35,7 @@ export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [organization, setOrganization] = React.useState<string>(getStoredOrganization());
   const [paginationLink, setPaginationLink] = React.useState<PaginationLink>();
+  const {selectedItem, setSelectedItem} = React.useContext(SelectedItemContext);
 
   function parsePaginationLinks(header: string): PaginationLink {
     const links: PaginationLink = {
@@ -123,8 +126,18 @@ export const ListPage: React.FC = () => {
     return paginationLink && paginationLink.last === undefined;
   }
 
+  function selectItem(member:MemberEntity) {
+
+    setSelectedItem({
+        name: member.login,
+        imageUrl: member.avatar_url,
+        description: member.id
+    });
+}
+
   return (
     <>
+      <ApiSelector></ApiSelector>
       <h2>Hello from List page</h2>
       <div>
         <TextField id="outlined-basic" label="GitHub Organization Name" variant="outlined" size="small" 
@@ -157,7 +170,9 @@ export const ListPage: React.FC = () => {
                 <Avatar alt={member.login} src={member.avatar_url} />
               </TableCell>
               <TableCell align="right">{member.id}</TableCell>
-              <TableCell align="right"><Link to={`/detail/${member.login}`}>{member.login}</Link></TableCell>
+              <TableCell align="right">
+                <Link onClick={(e) => selectItem(member)} to={`/detail/${member.login}`}>{member.login}</Link>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>

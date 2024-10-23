@@ -6,6 +6,8 @@ import {
 } from '@mui/material';
 import { getCharacters } from 'rickmortyapi';
 import { useDebounce } from 'use-debounce';
+import { ApiSelector } from './api-selector';
+import { SelectedItemContext } from "./app";
 
 interface Character {
     id: number;
@@ -21,7 +23,8 @@ export const RickAndMortyPage: React.FC = () => {
 
     const [characters, setCharacters] = React.useState<Character[]>([]);
     const [nameToSearch, setNameToSearch] = React.useState<string>("rick");
-    const [debounceFilter, setDebounceFilter] = useDebounce(nameToSearch, 1000);
+    const [debounceFilter] = useDebounce(nameToSearch, 1000);
+    const {selectedItem, setSelectedItem} = React.useContext(SelectedItemContext);
  
     const searchCharacters = () => {
         getCharacters({
@@ -37,8 +40,26 @@ export const RickAndMortyPage: React.FC = () => {
         searchCharacters();
       }, [debounceFilter]);
 
+    function buildDescription(character: any) {
+        return `${character.species}, ${character.gender}, ${character.status}`;
+    }
+
+    function selectItem(character:Character) {
+
+        const description = buildDescription(character);
+
+        setSelectedItem({
+            name: character.name,
+            imageUrl: character.image,
+            description: description
+        });
+    }
+
     return (
         <>
+
+            <ApiSelector></ApiSelector>
+
             <h2>Hello from Rick and Morty page</h2>
 
             <div>
@@ -67,7 +88,7 @@ export const RickAndMortyPage: React.FC = () => {
                                     <Avatar alt={character.name} src={character.image} />
                                 </TableCell>
                                 <TableCell align="right">
-                                    <Link to={`/detail/${character.name}`}>{character.name}</Link>
+                                    <Link onClick={(e) => selectItem(character)} to={`/detail/${character.name}`}>{character.name}</Link>
                                 </TableCell>
                                 <TableCell align="right">{character.status}</TableCell>
                                 <TableCell align="right">{character.species}</TableCell>
