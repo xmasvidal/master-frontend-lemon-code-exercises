@@ -60,7 +60,7 @@ export const RickAndMortyPage: React.FC = () => {
 
             <ApiSelector></ApiSelector>
 
-            <h2>Hello from Rick and Morty page</h2>
+            <h2>Rick and Morty API</h2>
 
             <div>
                 <TextField id="outlined-basic" label="Character Name" variant="outlined" size="small"

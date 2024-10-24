@@ -138,7 +138,7 @@ export const ListPage: React.FC = () => {
   return (
     <>
       <ApiSelector></ApiSelector>
-      <h2>Hello from List page</h2>
+      <h2>GitHub API</h2>
       <div>
         <TextField id="outlined-basic" label="GitHub Organization Name" variant="outlined" size="small" 
         value={organization} onChange={(e) => setOrganization(e.target.value)}/>

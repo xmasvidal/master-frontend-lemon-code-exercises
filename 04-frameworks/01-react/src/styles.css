@@ -3,4 +3,10 @@
   justify-content: center;
   align-items: center;
   height: 200px;
+  margin-top: 200px;
+}
+
+.menuLink {
+    padding: 10px;
+    color: white;
 }

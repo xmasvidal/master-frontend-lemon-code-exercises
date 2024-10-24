@@ -7,12 +7,12 @@ export const ApiSelector: React.FC = () => {
         <>
             <AppBar position="static">
                 <Toolbar variant="dense">
-                    <Link to="/list">
+                    <Link to="/list" className={"menuLink"} >
                         <Typography variant="h6" color="inherit" component="div">
                             GitHub
                         </Typography>
                     </Link>
-                    <Link to="/rick-and-morty">
+                    <Link to="/rick-and-morty" className={"menuLink"} >
                         <Typography variant="h6" color="inherit" component="div">
                             Rick & Morty
                         </Typography>
