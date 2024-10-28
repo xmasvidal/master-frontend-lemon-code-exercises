@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { LoginPage } from "./login";
-import { ListPage } from "./github";
+import { GitHubPage } from "./github";
 import { RickAndMortyPage } from "./rick-and-morty";
 import { DetailPage } from "./detail";
 
@@ -28,7 +28,7 @@ export const App = () => {
         <Router>
           <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route path="/list" element={<ListPage />} />
+            <Route path="/github" element={<GitHubPage />} />
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="/rick-and-morty" element={<RickAndMortyPage />} />
           </Routes>

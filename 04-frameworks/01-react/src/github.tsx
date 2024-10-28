@@ -19,7 +19,7 @@ interface PaginationLink {
   last: string
 }
 
-export const ListPage: React.FC = () => {
+export const GitHubPage: React.FC = () => {
 
   const getStoredOrganization = () => {
 
@@ -178,8 +178,6 @@ export const ListPage: React.FC = () => {
         </TableBody>
       </Table>
     </TableContainer>
-
-      <Link to="/detail">Navigate to detail page</Link>
     </>
   );
 };

@@ -1,15 +1,23 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { SelectedItemContext } from "./app";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Button } from "@mui/material";
 
 export const DetailPage: React.FC = () => {
   
   const {id} = useParams();
   const {selectedItem, setSelectedItem} = React.useContext(SelectedItemContext);
+
+  const navigate = useNavigate();
+
+  function goBack() {
+    let selectedApi = window.sessionStorage.getItem("selectedApi");
+    navigate(`/${selectedApi}`);
+  }
 
   return (
     <>
@@ -28,7 +36,7 @@ export const DetailPage: React.FC = () => {
           </Typography>
         </CardContent>
       </Card>
-      <Link to="/list">Go Back</Link>
+      <Button variant="contained" onClick={goBack}>Go Back</Button>
     </>
   );
 };
