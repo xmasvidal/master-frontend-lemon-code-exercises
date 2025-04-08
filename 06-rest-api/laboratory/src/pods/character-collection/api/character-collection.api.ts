@@ -1,13 +1,18 @@
+import axios from 'axios';
 import { CharacterEntityApi } from './character-collection.api-model';
-import { mockCharacterCollection } from './character-collection.mock-data';
-
-let characterCollection = [...mockCharacterCollection];
 
 export const getCharacterCollection = async (): Promise<CharacterEntityApi[]> => {
-  return characterCollection;
+  try {
+    const { data } = await axios.get<{ results: CharacterEntityApi[] }>(
+      `/api/character`
+    );
+    return data.results;
+  } catch (error) {
+    console.error('Error getting the characters: ', error);
+    throw new Error('Error getting the characters');
+  }
 };
 
 export const deleteCharacter = async (id: string): Promise<boolean> => {
-  characterCollection = characterCollection.filter((h) => h.id !== id);
   return true;
 };
