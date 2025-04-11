@@ -28,6 +28,7 @@ export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
       {() => (
         <Form className={classes.root}>
           <TextFieldComponent name="name" label="Name" />
+          <TextFieldComponent name="bestSentence" label="Best Sentence" />
           <Button type="submit" variant="contained" color="primary">
             Save
           </Button>
