@@ -3,19 +3,43 @@ import { Character } from './character.api-model';
 import { Lookup } from '#common/models';
 import { mockCities } from './character.mock-data';
 
-export const getCharacter = async (id: string): Promise<Character> => {
-  try {
-    const { data } = await axios.get(
-      `/api/character/${id}`
-    );
-    return data;
-  } catch (error) {
-    console.error(`Error getting the character: ${id}`, error);
-    throw new Error('Error getting the character');
+const getCharacterQuery = `
+  query GetCharacter($id: ID!) {
+    character(id: $id) {
+      id
+      name
+      status
+      species
+    }
   }
-};
+`;
 
-//TODO remove it
+const graphqlEndpoint = 'graphql';
+
+export async function getCharacter(characterId) {
+  try {
+    const variables = {id: characterId};
+    const response = await axios.post('graphql', {
+      query: getCharacterQuery,
+      variables: variables,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.data.errors) {
+      console.error('GraphQL Errors:', response.data.errors);
+      return null;
+    }
+
+    return response.data.data.character;
+  } catch (error) {
+    console.error('Error fetching character:', error);
+    return null;
+  }
+}
+
 export const getCities = async (): Promise<Lookup[]> => {
   return mockCities;
 };
