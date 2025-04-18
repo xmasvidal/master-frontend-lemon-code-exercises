@@ -21,5 +21,19 @@ export const getCities = async (): Promise<Lookup[]> => {
 };
 
 export const saveCharacter = async (character: Character): Promise<boolean> => {
-  return true;
+  try {
+    const { data } = await axios.put(
+      `/api/character/${character.id}`,
+      character,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return true;
+  } catch (error) {
+    console.error(`Error updating the character: ${character.id}`, error);
+    throw new Error('Error updating the character');
+  }
 };

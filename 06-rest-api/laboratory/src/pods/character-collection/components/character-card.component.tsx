@@ -36,7 +36,7 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
             style={{ height: 0, paddingTop: '56.25%' }}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {character.description}
+            "{character.description}"
           </Typography>
         </div>
       </CardContent>
