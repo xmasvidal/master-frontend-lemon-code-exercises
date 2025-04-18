@@ -7,6 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': 'https://rickandmortyapi.com/',
       '/thumbnails': 'http://localhost:3000',
+      '/graphql': 'https://rickandmortyapi.com'
     },
   },
 });
