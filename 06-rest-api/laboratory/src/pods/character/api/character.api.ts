@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Character } from './character.api-model';
 import { Lookup } from '#common/models';
-import { mockCities } from './character.mock-data';
 
 export const getCharacter = async (id: string): Promise<Character> => {
   try {
@@ -17,7 +16,7 @@ export const getCharacter = async (id: string): Promise<Character> => {
 
 //TODO remove it
 export const getCities = async (): Promise<Lookup[]> => {
-  return mockCities;
+  return [];
 };
 
 export const saveCharacter = async (character: Character): Promise<boolean> => {
