@@ -5,3 +5,7 @@
 04-frameworks/01-react/node_modules
 04-frameworks/01-react/dist
 05-testing/node_modules
+05-testing/dist
+06-rest-api/laboratory/node_modules
+06-rest-api/laboratory/dist
+06-rest-api/laboratory/server/node_modules
