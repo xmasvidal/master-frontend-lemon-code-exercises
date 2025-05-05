@@ -5,3 +5,4 @@
 04-frameworks/01-react/node_modules
 04-frameworks/01-react/dist
 05-testing/node_modules
+.DS_Store
