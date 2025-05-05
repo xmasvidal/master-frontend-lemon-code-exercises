@@ -9,3 +9,4 @@
 06-rest-api/laboratory/node_modules
 06-rest-api/laboratory/dist
 06-rest-api/laboratory/server/node_modules
+.DS_Store
