@@ -1,4 +1,4 @@
-import "./my-styles.css";
+import "./my-styles.scss";
 import logoImg from "./content/logo_lemoncode.png";
 
 const img = document.createElement("img");
