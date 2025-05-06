@@ -5,7 +5,10 @@ const path = require("path");
 module.exports = {
   context: path.resolve(__dirname, "./src"),
   entry: {
-    app: "./index.ts"
+    app: "./index.jsx"
+  },
+  resolve: {
+    extensions: [".js", ".jsx"]
   },
   output: {
     filename: "[name].[chunkhash].js",
@@ -15,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(t|j)s$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "babel-loader",
       },
@@ -23,10 +26,6 @@ module.exports = {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"], 
-      },
-      {
-        test: /\.(png|jpg)$/,
-        type: "asset/resource",
       },
       {
         test: /\.html$/,
