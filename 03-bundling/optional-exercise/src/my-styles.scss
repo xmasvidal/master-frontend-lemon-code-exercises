@@ -1,0 +1,19 @@
+
+$primary-color: green;
+
+.title {
+  color: $primary-color;
+  font-size: 3rem;
+  text-align: center;
+  margin: 2rem;
+  padding: 1rem;
+  border: 2px solid $primary-color;
+  border-radius: 5px;
+  background-color: lightyellow;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+}
+
+.main-background {
+  background-color: beige;
+}
