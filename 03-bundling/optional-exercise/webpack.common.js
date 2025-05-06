@@ -1,8 +1,10 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
+import url from "url";
 
-module.exports = {
+export const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+
+export default {
   context: path.resolve(__dirname, "./src"),
   entry: {
     app: "./index.jsx"
@@ -23,11 +25,6 @@ module.exports = {
         loader: "babel-loader",
       },
       {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"], 
-      },
-      {
         test: /\.html$/,
         loader: "html-loader",
       }
@@ -38,11 +35,7 @@ module.exports = {
       template: "./index.html",
       filename: "index.html",
       scriptLoading: "blocking"
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].[chunkhash].css",
-      chunkFilename: "[id].css",
-    }),
+    })
   ],
   devServer: {
     port: 8080,
