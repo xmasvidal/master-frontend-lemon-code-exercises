@@ -6,7 +6,7 @@ export const MyComponent = () => {
         <div>
             <h1>Hello, world!</h1>
             <p>This is a React component.</p>
-            <p>Api base: ${process.env.API_BASE}</p>
+            <p>Api base from Environment Vars: ${process.env.API_BASE}</p>
         </div>
     );
 };
