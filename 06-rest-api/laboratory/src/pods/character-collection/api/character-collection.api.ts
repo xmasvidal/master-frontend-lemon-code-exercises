@@ -1,17 +1,52 @@
 import axios from 'axios';
-import { CharacterEntityApi } from './character-collection.api-model';
 
-export const getCharacterCollection = async (): Promise<CharacterEntityApi[]> => {
-  try {
-    const { data } = await axios.get<{ results: CharacterEntityApi[] }>(
-      `/api/character`
-    );
-    return data.results;
-  } catch (error) {
-    console.error('Error getting the characters: ', error);
-    throw new Error('Error getting the characters');
+const graphqlQuery = `
+  query {
+  characters() {
+    info {
+      count
+    }
+    results {
+      id
+      name
+      species
+      type
+      gender
+      origin {
+        name
+      }
+      location {
+        name
+      }
+      image
+      created
+    }
   }
-};
+}
+`;
+
+export async function getCharacterCollection() {
+  try {
+    const response = await axios.post('graphql', {
+      query: graphqlQuery,
+      variables: {},
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.data.errors) {
+      console.error('GraphQL Errors:', response.data.errors);
+      return null;
+    }
+
+    return response.data.data.characters.results;
+  } catch (error) {
+    console.error('Error fetching characters collection:', error);
+    return null;
+  }
+}
 
 export const deleteCharacter = async (id: string): Promise<boolean> => {
   return true;
