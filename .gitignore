@@ -4,6 +4,8 @@
 03-bundling/dist
 04-frameworks/01-react/node_modules
 04-frameworks/01-react/dist
+04-frameworks/02-angular/node_modules
+04-frameworks/02-angular/mandatory-exercise/app/node_modules
 05-testing/node_modules
 05-testing/dist
 06-rest-api/laboratory/node_modules
