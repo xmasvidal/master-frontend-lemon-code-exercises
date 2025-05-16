@@ -1,3 +1,47 @@
-<div style="margin-top: 1rem;">
-  <button (click)="login()">Login</button>
+<div class="login-container">
+  <h2>Welcome</h2>
+  <p>master&#64;lemoncode.net</p>
+  <p>12345678</p>
+  <form (ngSubmit)="login()" class="login-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        [(ngModel)]="username"
+        name="username"
+        (focus)="resetValidation()"
+        placeholder="Enter your username"
+        required
+        #usernameRef="ngModel"
+      />
+      <mat-error *ngIf="usernameRef.invalid && usernameRef.touched">
+        Username is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [(ngModel)]="password"
+        name="password"
+        (focus)="resetValidation()"
+        type="password"
+        placeholder="Enter your password"
+        required
+        #passwordRef="ngModel"
+      />
+      <mat-error *ngIf="passwordRef.invalid && passwordRef.touched">
+        Password is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-error *ngIf="errorLogin" class="error-message">
+      Invalid username or password.
+    </mat-error>
+
+    <button mat-raised-button color="primary" type="submit" class="submit-button">
+      Login
+    </button>
+  </form>
 </div>
