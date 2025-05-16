@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { PrivateMenuComponent } from '../private-menu/private-menu.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-private-header',
@@ -9,4 +12,19 @@ import { PrivateMenuComponent } from '../private-menu/private-menu.component';
 })
 export class PrivateHeaderComponent {
 
+  userName: string = '';
+  private subscription: Subscription = new Subscription();
+
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.subscription = this.authService.username$.subscribe((username) => {
+      this.userName = username;
+    });
+  }
+
+  logout():void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

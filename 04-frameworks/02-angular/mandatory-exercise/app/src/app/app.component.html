@@ -3,9 +3,10 @@
 
 <main class="main">
   <div class="content">
-    <app-public-header></app-public-header>
-    <hr />
-    <app-private-header></app-private-header>
+    <app-private-header *ngIf="isUserLoggedIn; else guestMenu"></app-private-header>
+    <ng-template #guestMenu>
+      <app-public-header></app-public-header>
+    </ng-template>
     <hr />
     <router-outlet></router-outlet>
     <hr />
