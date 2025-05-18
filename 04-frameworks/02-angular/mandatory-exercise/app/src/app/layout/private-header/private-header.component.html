@@ -1,4 +1,8 @@
-<p>private-header works!</p>
-<app-private-menu> </app-private-menu>
-<p>Welcome back, {{ userName }}!</p>
-<button (click)="logout()">Logout</button>
+<app-private-menu>
+  <div class="user-info">
+    <span>Welcome back, {{ userName }}</span>
+  </div>
+  <div class="logout">
+    <button (click)="logout()">Logout</button>
+  </div>
+</app-private-menu>

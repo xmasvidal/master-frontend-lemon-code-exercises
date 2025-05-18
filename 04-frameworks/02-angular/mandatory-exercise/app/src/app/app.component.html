@@ -1,15 +1,21 @@
 <style>
 </style>
 
+<header>
+  <app-private-header *ngIf="isUserLoggedIn; else guestMenu"></app-private-header>
+  <ng-template #guestMenu>
+    <app-public-header></app-public-header>
+  </ng-template>
+</header>
+
 <main class="main">
   <div class="content">
-    <app-private-header *ngIf="isUserLoggedIn; else guestMenu"></app-private-header>
-    <ng-template #guestMenu>
-      <app-public-header></app-public-header>
-    </ng-template>
     <hr />
-    <router-outlet></router-outlet>
+    <router-outlet class=""></router-outlet>
     <hr />
-    <app-footer></app-footer>
   </div>
 </main>
+
+<footer>
+  <app-footer></app-footer>
+</footer>

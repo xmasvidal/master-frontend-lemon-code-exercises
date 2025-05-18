@@ -1,14 +1,7 @@
-<ul>
-  <li>
-    <a routerLinkActive="selected" routerLink="/dashboard">Dashboard</a>
-  </li>
-  <li>
-    <a routerLinkActive="selected" routerLink="/gallery">Galería</a>
-  </li>
-  <li>
-    <a routerLinkActive="selected" routerLink="/crud">CRUD</a>
-  </li>
-  <li>
-    <a routerLinkActive="selected" routerLink="/profile">Profile</a>
-  </li>
-</ul>
+<div class="navbar">
+  <a routerLinkActive="selected" routerLink="/dashboard">Dashboard</a>
+  <a routerLinkActive="selected" routerLink="/gallery">Galería</a>
+  <a routerLinkActive="selected" routerLink="/crud">CRUD</a>
+  <a routerLinkActive="selected" routerLink="/profile">Profile</a>
+  <ng-content></ng-content>
+</div>
