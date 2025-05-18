@@ -1,0 +1,38 @@
+footer {
+  text-align: center;
+  padding: 5px;
+  background-color: lightslategrey;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+main {
+  margin-top: 100px;
+}
+
+.logo {
+  background-color: lightslategrey;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 100%;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 21px;
+  color: white;
+  padding: 10px;
+}
