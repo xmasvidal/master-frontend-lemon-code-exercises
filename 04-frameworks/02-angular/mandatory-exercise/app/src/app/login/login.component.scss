@@ -11,7 +11,7 @@
   gap: 16px;
 }
 
-.full-width {
+.form-field {
   width: 100%;
 }
 
@@ -24,4 +24,14 @@
 .submit-button {
   width: 100%;
   margin-top: 16px;
+}
+
+.login-text {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 18px;
+    border-radius: 15px;
+    text-align: justify;
+    font-size: medium;
+    margin-bottom: 32px;
 }
