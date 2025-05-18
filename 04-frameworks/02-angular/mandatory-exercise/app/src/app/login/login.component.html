@@ -34,6 +34,9 @@
         required
         #passwordRef="ngModel"
       />
+      <mat-error *ngIf="passwordRef.invalid && passwordRef.touched">
+        Password is required.
+      </mat-error>
     </mat-form-field>
 
     <mat-error *ngIf="errorLogin" class="error-message">
