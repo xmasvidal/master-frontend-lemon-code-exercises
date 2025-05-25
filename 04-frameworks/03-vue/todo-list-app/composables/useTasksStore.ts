@@ -4,6 +4,7 @@ export const useTasksStore = defineStore('tasks', {
   state: () => ({
     tasks: [] as Task[],
   }),
+  persist: true,
   actions: {
     addTask(task: Task) {
       this.tasks.push(task);
