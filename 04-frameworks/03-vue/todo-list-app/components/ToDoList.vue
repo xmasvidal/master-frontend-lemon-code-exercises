@@ -18,23 +18,23 @@
         Add
       </button>
     </form>
-    <hr/>
-    <br/>
-    <div class="flex justify-between items-center mb-4">
-      <span>Completed {{ tasks.filter(task => task.completed).length }} of {{ tasks.length }} tasks</span>
+    <div class="flex justify-between items-center mb-4" v-if="tasksStore.tasks.length > 0">
+      <hr/>
+      <br/>
+      <span>Completed {{ tasksStore.tasks.filter(task => task.completed).length }} of {{ tasksStore.tasks.length }} tasks</span>
       <button
         @click="removeCompletedTasks"
         class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-        v-if="tasks.length > 0"
+        v-if="tasksStore.tasks.length > 0"
       >
         Remove completed tasks
       </button>
-    </div>
     <hr/>
     <br/>
+    </div>
     <ul class="divide-y divide-gray-200">
       <li
-        v-for="(task, index) in tasks"
+        v-for="(task, index) in tasksStore.tasks"
         :key="index"
         class="flex justify-between items-center py-3"
       >
@@ -58,58 +58,38 @@
   </section>
 </template>
 <script setup lang="ts">
-
-interface Task {
-    text: string;
-    completed: boolean;
-}
+import { useTasksStore } from '~/composables/useTasksStore';
+import type { Task } from '~/types/task';
 
 const newTask = ref<Task>({
     text: "",
     completed: false,
 });
-const tasks = ref<Task[]>([]);
 
 const addTask = () => {
     if (newTask.value.text.trim() === "") {
         return;
     }
-    tasks.value.push({
+    tasksStore.addTask({
         text: newTask.value.text,
         completed: false,
     });
     newTask.value.text = "";
     newTask.value.completed = false;
-    saveTasks();
 };
 
 const removeTask = (index: number) => {
-    tasks.value.splice(index, 1);
-    saveTasks();
+    tasksStore.removeTask(index);
 };
 
 const toggleTask = (index: number) => {
-    console.log("toggleTask", index);
-
-    tasks.value[index].completed = !tasks.value[index].completed;
-    saveTasks();
+    tasksStore.toggleTask(index);
 };
 
 const removeCompletedTasks = () => {
-    tasks.value = tasks.value.filter((task) => !task.completed);
-    saveTasks();
+    tasksStore.removeCompletedTasks();
 };
-const saveTasks = () => {
-    localStorage.setItem("tasks", JSON.stringify(tasks.value));
-};
-const loadTasks = () => {
-    const tasksFromStorage = localStorage.getItem("tasks");
-    if (tasksFromStorage) {
-        tasks.value = JSON.parse(tasksFromStorage);
-    }
-};
-onMounted(() => {
-    loadTasks();
-});
+
+const tasksStore = useTasksStore();
 
 </script>
