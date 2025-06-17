@@ -1,0 +1,15 @@
+{
+  "name": "exercise02",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "parcel serve src/index.html --public-url ./",
+    "build": "parcel build src/index.html --public-url ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xavi Masvidal",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0"
+  },
+  "description": ""
+}

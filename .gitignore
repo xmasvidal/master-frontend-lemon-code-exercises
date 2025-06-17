@@ -1,5 +1,7 @@
 01-layout/.DS_Store
-.DS_Store
+01-layout/exercise02/node_modules
+01-layout/exercise02/dist
+01-layout/exercise02/.parcel-cache
 03-bundling/node_modules
 03-bundling/dist
 04-frameworks/01-react/node_modules

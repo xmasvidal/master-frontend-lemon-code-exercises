@@ -1,0 +1,21 @@
+@use "./dragonBallTheme" as theme;
+//@use "./theSimpsonsTheme" as theme;
+
+body {
+  background-color: theme.$base_color;
+  color: theme.$primary_color;
+  font-size: theme.$font_size;
+  font-family: theme.$font_family;
+}
+
+h1, h2, h3 {
+  color: theme.$secondary_color;
+}
+
+.main-content {
+  border-color: theme.$tertiary_color;
+  border-radius: theme.$border_radius;
+  box-shadow: theme.$box_shadow;
+  background-color: theme.$tertiary_color;
+  width: 500px;
+}
